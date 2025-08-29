@@ -1,4 +1,7 @@
 # SPOTIPSYCHIC
+
+#### This was completed as part of CS50x 2022, to fulfil the final project requirement.
+
 #### Video Demo: https://youtu.be/hQ48j33pZyk
 #### Description:
 The project is a website aiming to take advantage of the Spotify API to provide insights into a user's listening history.
