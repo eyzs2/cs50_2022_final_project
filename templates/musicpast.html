@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Music Past
+{% endblock %}
+
+{% block main %}
+<div class="centered" style="width:100%;">
+    <img src="static/smoke-fog.gif" alt="Atmospheric fog" class="centerimage">
+    <h1 class="pageheader">Music Past</h1>
+    <div class="container-mid" style="justify-content:center; width:65%">
+        <div class="music-past" id="1">
+            {{ esum }}
+        </div>
+        <div class="music-past" id="3">
+            {{ asum }}
+        </div>
+        <div class="music-past" id="2">
+            {{ dsum }} <br>
+            Here's a track that represents your music's danceability:
+            <p style="font-family: Times, serif,;">
+                <a href="{{ dncetrack['external_urls']['spotify'] }}" target="_blank" class="tracklistitemlink">
+                    <div class="tracklist-item" style="width:50%">
+                        <div class="column-left">
+                            <span>
+                                <strong>Artist:</strong>
+                                {% for artist in dncetrack["artists"] %}
+                                    {{ artist["name"] }},
+                                {% endfor %}
+                                <br>
+                                <strong>Title:</strong> {{ dncetrack["name"] }}
+                            </span>
+                        </div>
+                        <div class="column-right">
+                            <img src="{{ dncetrack['album']['images'][0]['url'] }}" alt="Album Cover" class="listed-album-cover">
+                        </div>
+                    </div>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $(".music-past").each(function(index)
+        {
+            $(this).delay(index*2000).fadeIn(2000);
+        });
+    });
+</script>
+
+{% endblock %}

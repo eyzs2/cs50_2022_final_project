@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Music Future
+{% endblock %}
+
+{% block main %}
+    <div class="centered" style="width:100%;">
+        <img src="static/smoke-fog.gif" alt="Atmospheric fog" class="centerimage">
+        <h1 class="pageheader">Music Future</h1>
+        <div id="summary" style="display:none;">
+            <div class="music-future-summary">
+                <p style="color:#cc9900;"> 
+                    Since you've enjoyed listening to artists like <strong><u>{{ artists[0]["name"] }}</u></strong> and tracks like <strong><u>{{ tracks[0]["name"] }}</u></strong>, the wise SpotiPsychic believes these tracks may find themselves in your future...
+                </p>
+            </div>
+            <div class="trackslistdiv">
+                <div class="tracklistheader">
+                    <div>
+                        <h3 style="text-decoration:underline;">Your Music Future Playlist</h3>
+                    </div>
+                </div>
+                <div class="trackslist">
+                    {% for item in futuretracks %}
+                    <p>
+                        <a href="{{ item['external_urls']['spotify'] }}" target="_blank" class="tracklistitemlink">
+                            <div class="tracklist-item">
+                                <div class="column-left">
+                                    <span>
+                                        <strong>Artist:</strong>
+                                        {% for artist in item["artists"] %}
+                                            {{ artist["name"] }},
+                                        {% endfor %}
+                                        <br>
+                                        <strong>Title:</strong> {{ item["name"] }}
+                                    </span>
+                                </div>
+                                <div class="column-right">
+                                    <img src="{{ item['album']['images'][0]['url'] }}" alt="Album Cover" class="listed-album-cover">
+                                </div>
+                            </div>
+                        </a>
+                    </p>
+                    {% endfor %}
+                </div>
+                <div class="trackslistheader">
+                    <form action="/musicfuture" method="post">
+                        <input type="hidden" value="{{ futuretracks }}" id="futuretracks" name="futuretracks">
+                        <input type="submit" class="playlist-add-button" value="Add playlist to Spotify library">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+            $("#summary").fadeIn(2000);
+        });
+    </script>
+{% endblock %}

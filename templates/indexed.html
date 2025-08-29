@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <div class="centered">
+        <img src="static/psychicone.gif" alt="Crystal ball" class="centerimage">
+        <a href="{{ auth_url }}">
+            <button class="login-button">Click here to connect to your Spotify account!</button>
+        </a>
+    </div>
+{% endblock %}

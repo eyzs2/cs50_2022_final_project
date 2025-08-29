@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home of the SPOTIpsychic
+{% endblock %}
+
+{% block main %}
+    <div class="centered">
+        <img src="static/psychicone.gif" alt="Crystal ball" class="centerimage" id="crystalball">
+        <h4 id="zero" class="mystic-text">Greetings, {{ name }}...</h4>
+        <h4 id="one" class="mystic-text">The all-powerful SPOTIpsychic reads into your music and reveals your deepest secrets...</h4>
+        <h4 id="two" class="mystic-text">Choose one of the following options and the SPOTIpsychic will offer their mystic insights...</h4>
+        <div class="login-button" id="choicebutton">
+            <a href="/musicpast"><button>music past</button></a>
+            <a href="/musicfuture"><button>music future</button></a>
+        </div>
+    </div>
+    
+    <script>
+        $(function(){
+            $(".mystic-text").each(function(index)
+            {
+                $(this).delay(index*4000).fadeIn(2000);
+                if (!$(this).is("#two")){
+                    $(this).fadeOut(2000);
+                }
+                else if ($(this).is("#two")){
+                    $("#choicebutton").delay(index*4000).fadeIn(2000);
+                }
+            });
+        });
+    </script>
+{% endblock %}

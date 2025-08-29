@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Music Future
+{% endblock %}
+
+{% block main %}
+<div class="centered" style="width:100%;">
+    <img src="static/smoke-fog.gif" alt="Atmospheric fog" class="centerimage">
+    <h1 class="pageheader">Music Future</h1>
+    <div class="container-mid">
+        <div class="tracklistheader">
+            <div>
+                <h3 style="text-decoration:underline;">Your Music Future Playlist</h3>
+            </div>
+        </div>
+        <div class="trackslist"  style="margin-left:auto; margin-right:auto;">
+            {% for item in futuretracks %}
+            <p>
+                <a href="{{ item['external_urls']['spotify'] }}" target="_blank" class="tracklistitemlink">
+                    <div class="tracklist-item">
+                        <div class="column-left">
+                            <span>
+                                <strong>Artist:</strong>
+                                {% for artist in item["artists"] %}
+                                    {{ artist["name"] }},
+                                {% endfor %}
+                                <br>
+                                <strong>Title:</strong> {{ item["name"] }}
+                            </span>
+                        </div>
+                        <div class="column-right">
+                            <img src="{{ item['album']['images'][0]['url'] }}" alt="Album Cover" class="listed-album-cover">
+                        </div>
+                    </div>
+                </a>
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
